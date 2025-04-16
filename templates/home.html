@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% comment %} <!DOCTYPE html>
 <html>
     <head>
         <meta name="description" content="">
@@ -16,10 +18,10 @@ text-decoration:none;
     }
 </style>
     </head>
-    <body>
+    <body> {% endcomment %}
 
         {% comment %} The isalnum() method in Python is a string method used to check if all characters in a string are alphanumeric. An alphanumeric character is either a letter (A-Z, a-z) or a digit (0-9). If all characters in the string are alphanumeric and the string is not empty, it returns True; otherwise, it returns False. {% endcomment %}
-<div class="container mt-5 mb-3">
+{% comment %} <div class="container mt-5 mb-3">
 
         <h3> Welcome to Our form</h3>
     {% for message in messages %}
@@ -38,5 +40,24 @@ text-decoration:none;
 </div>
         
     </body>
-</html>
+</html> {% endcomment %}
+
+{% comment %} ............... {% endcomment %}
+
+
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    {% if user.is_authenticated %}
+        <h1>Hello, {{ user.first_name }} 👋</h1>
+        <p>Welcome back to your dashboard!</p>
+    {% else %}
+        <h1>Welcome to MySite!</h1>
+        <p>Please <a href="/signin">Login</a> or <a href="/signup">Register</a> to continue.</p>
+    {% endif %}
+</div>
+{% endblock %}
 
