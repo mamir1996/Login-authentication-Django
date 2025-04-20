@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from .models import CustomUser  # your custom user model
-from .forms import CustomUserCreationForm  # new form
+from django.contrib.auth import login, logout
+from .models import CustomUser
+from .forms import CustomUserCreationForm, CustomLoginForm
 
 def home(request):
     return render(request, 'home.html')
@@ -15,29 +15,22 @@ def signup(request):
             form.save()
             messages.success(request, "Your account has been successfully created.")
             return redirect('signin')
-        else:
-            return render(request, 'signup.html', {'form': form})
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
 
 def signin(request):
-    if request.method == "POST":
-        username = request.POST.get('uname')
-        pass1 = request.POST.get('pass1')
-
-        user = authenticate(username=username, password=pass1)
-
-        if user is not None:
+    if request.method == 'POST':
+        form = CustomLoginForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
             login(request, user)
-            fname = user.first_name
-            return render(request, "home.html", {'fname': fname})
-        else:
-            messages.error(request, "Invalid credentials.")
-            return redirect('signin')
-
-    return render(request, 'signin.html')
+            messages.success(request, f"Welcome back, {user.first_name}!")
+            return redirect('home')
+    else:
+        form = CustomLoginForm()
+    return render(request, 'signin.html', {'form': form})
 
 
 def signout(request):

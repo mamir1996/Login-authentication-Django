@@ -1,26 +1,4 @@
 {% extends 'base.html' %}
-{% comment %} {% extends 'base.html' %}
-{% block title %}Sign In{% endblock %}
-
-{% block content %}
-<h2 class="text-center mt-5">Sign In</h2>
-<form action="/signin" method="post">
-    {% csrf_token %}
-    <div class="mb-3">
-        <label>User Name</label>
-        <input type="text" name="uname" id="uname" class="form-control" placeholder="Enter your user name">
-    </div>
-    <div class="mb-3">
-        <label>Password</label>
-        <input type="password" name="pass1" id="pass1" class="form-control" placeholder="Enter your password">
-    </div>
-    <button type="submit" class="btn btn-success">Sign In</button>
-</form>
-{% endblock %} {% endcomment %}
-{% comment %} ............  {% endcomment %}
-
-
-
 {% block title %}Sign In{% endblock %}
 
 {% block content %}
