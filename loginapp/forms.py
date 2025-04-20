@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
@@ -20,15 +20,3 @@ class CustomUserCreationForm(UserCreationForm):
         if not username.isalnum():
             raise forms.ValidationError("Username must be Alpha-Numeric!")
         return username
-
-
-class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(
-        max_length=150,
-        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder': 'Enter your username'})
-    )
-    password = forms.CharField(
-        label="Password",
-        strip=False,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'})
-    )
