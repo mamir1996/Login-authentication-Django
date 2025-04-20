@@ -5,8 +5,13 @@ from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomLoginForm
 
 def home(request):
-    return render(request, 'home.html')
+    users = CustomUser.objects.all()  # Fetch all users from database
+    user_count = users.count()        # Total number of registered users
 
+    return render(request, 'home.html', {
+        'users': users,
+        'user_count': user_count
+    })
 
 def signup(request):
     if request.method == 'POST':
