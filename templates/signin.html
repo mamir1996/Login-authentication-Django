@@ -1,19 +1,4 @@
  {% extends 'base.html' %}
-{% comment %}
- {% block title %}Sign In{% endblock %}
-
-{% block content %}
-<h2 class="text-center mt-3">Sign In</h2>
-
-<form method="post" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit" class="btn btn-success">Sign In</button>
-</form>
-{% endblock %} {% endcomment %}
-
-
 {% block title %}Sign In{% endblock %}
 
 {% block content %}

@@ -1,44 +1,4 @@
  {% extends 'base.html' %}
-{% comment %}
-{% block title %}Home{% endblock %}
-
-{% block content %}
-<div class="text-center">
-    {% if user.is_authenticated %}
-        <h2>Welcome, {{ user.first_name }} 👋</h2>
-    {% else %}
-        <h2>Welcome to MySite!</h2>
-    {% endif %}
-</div>
-
-<div class="mt-5">
-    <h4>Total Registered Users: {{ user_count }}</h4>
-
-    <table class="table table-bordered mt-3">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for u in users %}
-                <tr>
-                    <td>{{ u.id }}</td>
-                    <td>{{ u.username }}</td>
-                    <td>{{ u.email }}</td>
-                    <td>{{ u.phone_number }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% endblock %} {% endcomment %}
-
-
-
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -46,6 +6,14 @@
   {% if user.is_authenticated %}
     <h1>Hello, {{ user.first_name }} 👋</h1>
     <p>Welcome back to your dashboard!</p>
+    
+    <div class="mt-4">
+        <h4>Your Details:</h4>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    </div>
     <a href="{% url 'signout' %}" class="btn btn-outline-danger mt-3">Logout</a>
   {% else %}
     <h1>Welcome to MySite!</h1>
