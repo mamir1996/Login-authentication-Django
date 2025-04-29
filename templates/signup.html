@@ -1,5 +1,7 @@
-{% extends 'base.html' %}
-{% block title %}Sign Up{% endblock %}
+ {% extends 'base.html' %}
+
+{% comment %}
+ {% block title %}Sign Up{% endblock %}
 
 {% block content %}
 <h2 class="text-center mt-3">Sign Up</h2>
@@ -10,4 +12,26 @@
 
     <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>
+{% endblock %} {% endcomment %}
+
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-center mb-4">Sign Up</h2>
+
+    <form action="{% url 'signup' %}" method="post" class="card p-4 shadow-sm">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" class="btn btn-primary w-100 mt-3">Create Account</button>
+    </form>
+
+    <p class="text-center mt-3">Already have an account? 
+      <a href="{% url 'signin' %}">Login here</a>.
+    </p>
+  </div>
+</div>
 {% endblock %}

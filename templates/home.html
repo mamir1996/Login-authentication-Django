@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-
+ {% extends 'base.html' %}
+{% comment %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -34,5 +34,22 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+{% endblock %} {% endcomment %}
+
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+  {% if user.is_authenticated %}
+    <h1>Hello, {{ user.first_name }} 👋</h1>
+    <p>Welcome back to your dashboard!</p>
+    <a href="{% url 'signout' %}" class="btn btn-outline-danger mt-3">Logout</a>
+  {% else %}
+    <h1>Welcome to MySite!</h1>
+    <p>Please <a href="{% url 'signin' %}">Login</a> or <a href="{% url 'signup' %}">Register</a> to continue.</p>
+  {% endif %}
 </div>
 {% endblock %}
