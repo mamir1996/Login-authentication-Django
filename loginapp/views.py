@@ -25,6 +25,7 @@ def signup(request):
             return redirect('signin')
         else:
             messages.error(request, "Please correct the errors below.")
+            
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
