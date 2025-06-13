@@ -1,4 +1,6 @@
 # Ignore Python virtual environments
+.env
+.env.*
 venv/
 env/
 Scripts/
